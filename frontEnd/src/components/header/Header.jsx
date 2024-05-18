@@ -3,10 +3,17 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleUser } from '@fortawesome/free-solid-svg-icons'
 import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons'
 import Logo from "../../assets/images/argentBankLogo.png"
+import { useDispatch, useSelector } from "react-redux";
+import { removeState } from "../../redux/authSlice";
 
 const Header = () => {
+    const token = useSelector(state => state.auth.token);
+    const userName = useSelector(state => state.auth.user?.userName);
+    const dispatch = useDispatch();
 
-    const isConnected = false;
+    const handleSignOut = () => {
+        dispatch(removeState());
+    }
 
     return (
         <nav className="main-nav">
@@ -19,20 +26,20 @@ const Header = () => {
                 <h1 className="sr-only">Argent Bank</h1>
             </NavLink>
             {
-                isConnected ?
+                token ?
                     <div>
                         <NavLink className="main-nav-item" to="/user">
-                        <FontAwesomeIcon icon={faCircleUser} />
-                            Tony
+                            <FontAwesomeIcon icon={faCircleUser} />
+                            {userName}
                         </NavLink>
-                        <NavLink className="main-nav-item" to="/">
-                        <FontAwesomeIcon icon={faRightFromBracket} />                            Sign Out
+                        <NavLink className="main-nav-item" to="/" onClick={handleSignOut}>
+                            <FontAwesomeIcon icon={faRightFromBracket} />                            Sign Out
                         </NavLink>
                     </div>
                     :
                     <div>
                         <NavLink className="main-nav-item" to="/sign-in">
-                        <FontAwesomeIcon icon={faCircleUser} />
+                            <FontAwesomeIcon icon={faCircleUser} />
                             Sign In
                         </NavLink>
                     </div>
