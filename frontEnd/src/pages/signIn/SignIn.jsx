@@ -1,10 +1,10 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleUser } from '@fortawesome/free-solid-svg-icons'
-import { NavLink, useNavigate } from 'react-router-dom';
-import { login, postProfile, putProfile, signUp } from '../../redux/comAPI';
-import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { login, postProfile } from '../../redux/comAPI';
+import { useDispatch } from 'react-redux';
 import { addToken, addUserInfo } from '../../redux/authSlice';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 
 const SignIn = () => {
@@ -24,11 +24,11 @@ const SignIn = () => {
       dispatch(addToken(token));
       const userInfo = await postProfile(token);
       dispatch(addUserInfo(userInfo));
-      if(remember){
+      if (remember) {
         localStorage.setItem("token", token);
       }
       navigate('/user');
-      
+
     } catch (error) {
       console.error("Problème lors de la connexion : ", error);
     }
@@ -43,11 +43,11 @@ const SignIn = () => {
         <form onSubmit={handleSubmit}>
           <div className="input-wrapper">
             <label htmlFor="username">Username</label>
-            <input type="text" id="username" className='edit-input' onChange={e => setEmail(e.target.value)}/>
+            <input type="text" id="username" className='edit-input' onChange={e => setEmail(e.target.value)} />
           </div>
           <div className="input-wrapper">
             <label htmlFor="password">Password</label>
-            <input type="password" id="password" className='edit-input' onChange={e => setPassword(e.target.value)}/>
+            <input type="password" id="password" className='edit-input' onChange={e => setPassword(e.target.value)} />
           </div>
           <div className="input-remember">
             <label htmlFor="remember-me">Remember me</label>

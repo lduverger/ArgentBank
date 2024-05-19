@@ -1,4 +1,4 @@
-import React from 'react';
+import PropTypes from 'prop-types';
 
 const Account = ({ title, amount, aDesc }) => {
   return (
@@ -14,5 +14,11 @@ const Account = ({ title, amount, aDesc }) => {
     </section>
   );
 };
+
+Account.propTypes = {
+  title: PropTypes.string.isRequired,
+  amount: PropTypes.string.isRequired,
+  aDesc: PropTypes.string.isRequired,
+}
 
 export default Account;

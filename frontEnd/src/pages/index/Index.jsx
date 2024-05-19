@@ -1,4 +1,3 @@
-import React from 'react';
 import Feature from '../../components/feature/Feature';
 import iconChat from "../../assets/images/icon-chat.png"
 import iconMoney from "../../assets/images/icon-money.png"

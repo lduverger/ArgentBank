@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Account from '../../components/account/Account';
 import { useDispatch, useSelector } from 'react-redux';
 import { addUserInfo } from '../../redux/authSlice';

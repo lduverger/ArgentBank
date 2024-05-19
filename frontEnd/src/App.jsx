@@ -27,7 +27,7 @@ function App() {
 
     handleToken();
 
-  }, [])
+  })
 
   return (
     <BrowserRouter basename='/ArgentBank'>

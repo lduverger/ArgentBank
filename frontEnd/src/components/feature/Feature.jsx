@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 const Feature = ({src, alt, title, text}) => {
     return (
         <div className="feature-item">
@@ -9,5 +11,12 @@ const Feature = ({src, alt, title, text}) => {
         </div>
     );
 };
+
+Feature.propTypes = {
+  src: PropTypes.string.isRequired,
+  alt: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired,
+}
 
 export default Feature;
