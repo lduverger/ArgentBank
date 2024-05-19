@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleUser } from '@fortawesome/free-solid-svg-icons'
 import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons'
-import Logo from "../../assets/images/argentBankLogo.png"
+import Logo from "../../assets/images/argentBankLogo.webp"
 import { useDispatch, useSelector } from "react-redux";
 import { removeState } from "../../redux/authSlice";
 
