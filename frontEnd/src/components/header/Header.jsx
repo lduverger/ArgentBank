@@ -13,6 +13,7 @@ const Header = () => {
 
     const handleSignOut = () => {
         dispatch(removeState());
+        localStorage.removeItem("token");
     }
 
     return (

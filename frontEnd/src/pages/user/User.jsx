@@ -19,13 +19,12 @@ const User = () => {
 
     const handleEditUser = async (e) => {
         e.preventDefault();
-        try{
+        try {
             const userInfo = await putProfile(newUserName, token);
-            console.log("userInfo in user : ", userInfo);
             dispatch(addUserInfo(userInfo));
             setEdit(prev => !prev);
         }
-        catch(error){
+        catch (error) {
             console.log("erreur lors de la demande de changement d'username : ", error)
         }
     }
@@ -39,18 +38,29 @@ const User = () => {
 
     return (
         <main className="main bg-dark">
-            <div className="header">
+            <div className='header'>
                 {
                     !edit ?
                         <>
-                            <h1>Welcome back<br />{firstName} {lastName}</h1>
+                            <h1 className="user-title" >Welcome back<br />{firstName} {lastName}</h1>
                             <button className="edit-button" onClick={handleEditMode}>Edit Username</button>
                         </>
                         :
                         <>
-                            <h1>Choose your username</h1>
-                            <form>
-                                <input type="text" id="username" value={newUserName} onChange={e => setnewUserName(e.target.value)} />
+                            <h1 className="user-title">Choose your username</h1>
+                            <form className='edit-form'>
+                                <div className="input-wrapper">
+                                    <label htmlFor="username">Username</label>
+                                    <input type="text" id="username" value={newUserName} onChange={e => setnewUserName(e.target.value)} />
+                                </div>
+                                <div className="input-wrapper">
+                                    <label htmlFor="firstname">Firstname</label>
+                                    <input type="text" id="firstname" className="disabled" value={firstName} disabled />
+                                </div>
+                                <div className="input-wrapper">
+                                    <label htmlFor="lastname">Lastname</label>
+                                    <input type="text" id="lastname" className="disabled" value={lastName} disabled />
+                                </div>
                                 <div className='edit-form-button-container'>
                                     <button type="submit" className="edit-button" onClick={handleEditUser}>Confirm</button>
                                     <button type="submit" className="edit-button" onClick={handleEditMode}>Cancel</button>

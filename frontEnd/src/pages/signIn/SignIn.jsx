@@ -2,9 +2,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleUser } from '@fortawesome/free-solid-svg-icons'
 import { NavLink, useNavigate } from 'react-router-dom';
 import { login, postProfile, putProfile, signUp } from '../../redux/comAPI';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addToken, addUserInfo } from '../../redux/authSlice';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 
 const SignIn = () => {
@@ -12,6 +12,7 @@ const SignIn = () => {
   // user tony@stark.com password123
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [remember, setRemember] = useState(false);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -23,6 +24,9 @@ const SignIn = () => {
       dispatch(addToken(token));
       const userInfo = await postProfile(token);
       dispatch(addUserInfo(userInfo));
+      if(remember){
+        localStorage.setItem("token", token);
+      }
       navigate('/user');
       
     } catch (error) {
@@ -39,15 +43,15 @@ const SignIn = () => {
         <form onSubmit={handleSubmit}>
           <div className="input-wrapper">
             <label htmlFor="username">Username</label>
-            <input type="text" id="username" onChange={e => setEmail(e.target.value)}/>
+            <input type="text" id="username" className='edit-input' onChange={e => setEmail(e.target.value)}/>
           </div>
           <div className="input-wrapper">
             <label htmlFor="password">Password</label>
-            <input type="password" id="password" onChange={e => setPassword(e.target.value)}/>
+            <input type="password" id="password" className='edit-input' onChange={e => setPassword(e.target.value)}/>
           </div>
           <div className="input-remember">
             <label htmlFor="remember-me">Remember me</label>
-            <input type="checkbox" id="remember-me" />
+            <input type="checkbox" id="remember-me" className='edit-input' onChange={e => setRemember(e.target.checked)} />
           </div>
           <button type="submit" className="sign-in-button">Sign In</button>
         </form>
